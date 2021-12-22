@@ -8,7 +8,7 @@ const resolve = dir => {
 };
 
 const env = process.env.NODE_ENV
-// let target = process.env.VUE_APP_URL
+let target = process.env.VUE_APP_URL  // development和production环境是不同的
 
 const cdn = {
   // 开发环境
@@ -50,17 +50,14 @@ module.exports = {
   devServer: {
     open: true,
     host: '0.0.0.0',
-    port: 3000,
+    port: 3000
     // 由于本项目数据通过easy-mock和mockjs模拟，不存在跨域问题，无需配置代理;
-    proxy: { 
-      '/api': {
-          target: 'http://localhost:8000',
-          changeOrigin: true,
-          pathRewrite: {
-            '^/api': '/' 
-          }
-      }
-    }
+    // proxy: { 
+    //   '/v2': {
+    //       target: target,
+    //       changeOrigin: true
+    //   }
+    // }
   },
    // webpack相关配置
   chainWebpack: (config) => {

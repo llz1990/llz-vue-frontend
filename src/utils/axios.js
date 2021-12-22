@@ -5,7 +5,7 @@ import { getToken } from '@/utils/auth'
 
 // 创建axios实例
 let service =  axios.create({
-  baseURL: process.env.BASE_API || 'api', // api的base_url
+  baseURL: process.env.BASE_API, // api的base_url
   timeout: 5000 // 请求超时时间
 })
 // request拦截器
@@ -29,9 +29,9 @@ service.interceptors.response.use(
     const res = response.data
     if (res.code !== 200) {
       Message({
-        message: res.message || '网络请求错误，请重试',
+        message: res.message,
         type: 'error',
-        duration: 3 * 1000
+        duration: 5 * 1000
       })
       // 根据服务端约定的状态码：5001:非法的token; 5002:其他客户端登录了; 5004:Token 过期了;
       if (res.code === 5001 || res.code === 5002 || res.code === 5004) {
@@ -54,7 +54,7 @@ service.interceptors.response.use(
     Message({
       message: error.message,
       type: 'error',
-      duration: 3 * 1000
+      duration: 5 * 1000
     })
     return Promise.reject(error)
   }

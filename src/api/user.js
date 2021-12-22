@@ -3,8 +3,8 @@ import request from '@/utils/axios'
 
 export function login(params) {
   return request({
-    url: '/login',
-    method: 'post',
+    url: '/user/login',
+    method: 'get',
     data:params
   })
 }
