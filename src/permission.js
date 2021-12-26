@@ -17,6 +17,7 @@ function hasPermission(roles, permissionRoles) {
 const whiteList = ['/login'] // 不重定向白名单
 
 router.beforeEach((to, from, next) => {
+  console.log('路由守卫', to);
   NProgress.start()
    // 设置浏览器头部标题
    const browserHeaderTitle = to.meta.title
