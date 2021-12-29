@@ -24,7 +24,6 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(
   response => {
     const res = response.data
-    debugger;
     // res.code !== 200 对返回错误数据的处理
     if (res.code !== 200) {
       Message({

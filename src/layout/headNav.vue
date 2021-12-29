@@ -67,7 +67,7 @@
                             <template slot="title">
                                 <div class='welcome'>
                                     <span class="name">{{$t('commons.hi')}},</span>
-                                    <span class='name avatarname'> {{ $t(`commons.${name}`)}}</span>
+                                    <span class='name avatarname'> {{ name }}</span>
                                 </div>
                                 <img :src="avatar" class='avatar' alt="">
                             </template>
