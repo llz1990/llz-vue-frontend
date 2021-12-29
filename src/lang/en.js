@@ -6,7 +6,7 @@ const zh = {
       editor: 'Editor',
       quit: 'Sign Out',
       hi: 'Hi',
-      index: 'Dashboard',
+      home: 'Dashboard',
       userManage: 'Users',
       share: 'Share',
       infoManage: 'Infos',

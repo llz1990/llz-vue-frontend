@@ -8,14 +8,6 @@ export function login(params) {
     data:params
   })
 }
-export function logout(params) {
-  return request({
-    url: '/user/logout',
-    method: 'get',
-    data:params
-  })
-}
-
 
 export function getUserInfo(params) {
   return request({
@@ -37,7 +29,7 @@ export function getUserList(reqData) {
 // =================== 此处为真是数据接口 =========================
 export function sysLogin(params) {
   return request({
-    url: '/api/login',
+    url: 'api/login',
     method: 'post',
     data: params
   })
@@ -45,7 +37,7 @@ export function sysLogin(params) {
 
 export function sysGetUserInfo(params) {
   return request({
-    url: '/api/checkToken',
+    url: 'api/checkToken',
     method: 'post',
     data: params
   })

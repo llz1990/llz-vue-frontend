@@ -1,6 +1,6 @@
 
 import * as mUtils from '@/utils/mUtils'
-import { logout ,getUserInfo } from '@/api/user'  // 导入用户信息相关接口
+import { sysGetUserInfo } from '@/api/user'  // 导入用户信息相关接口
 import { getToken, setToken, removeToken } from '@/utils/auth'
 
 
@@ -37,11 +37,9 @@ const user  = {
       //登出
       LogOut({ commit, reqData }) {
         return new Promise((resolve, reject) => {
-          logout(reqData).then(response => {
-            commit('SET_ROLES', [])
-            removeToken('Token')
-            resolve()
-          })
+          commit('SET_ROLES', [])
+          removeToken('Token')
+          resolve()
         })
       },
       // 动态修改权限;本实例中,role和token是相同的;
@@ -49,7 +47,7 @@ const user  = {
         return new Promise(resolve => {
           const token = role;
           setToken("Token",token)
-          getUserInfo({"token":token}).then(res => {
+          sysGetUserInfo({"token":token}).then(res => {
             let data = res.data.userList;
             commit('SET_ROLES', data.roles)
             commit('SET_NAME', data.name)

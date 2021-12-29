@@ -6,7 +6,7 @@ const zh = {
       editor: '赵晓编',
       quit: '退出',
       hi: '您好',
-      index: '首页',
+      home: '首页',
       userManage: '用户管理',
       share: '分享功能',
       infoManage: '信息管理',

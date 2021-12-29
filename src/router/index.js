@@ -31,15 +31,12 @@ export const constantRouterMap = [
 	{
 		path: '',
 		component: Layout,
-		redirect: '/index/index',
+		redirect: '/home/index',
 		hidden: true
 	},
-	{ path: '/login', name: 'login', component: () => import('@/page/login'), hidden: true },
-	{ path: '/404', component: () => import('@/page/errorPage/404'), hidden: true },
-	{ path: '/401', component: () => import('@/page/errorPage/401'), hidden: true },
 	{
-		path: '/index',
-		name: 'index',
+		path: '/home',
+		name: 'home',
 		component: Layout,
 		meta: {
 			title: '首页',
@@ -57,7 +54,10 @@ export const constantRouterMap = [
 				component: () => import('@/page/index/index'),
 			}
 		]
-	}
+	},
+	{ path: '/login', name: 'login', component: () => import('@/page/login'), hidden: true },
+	{ path: '/404', component: () => import('@/page/errorPage/404'), hidden: true },
+	{ path: '/401', component: () => import('@/page/errorPage/401'), hidden: true }
 ]
 
 //注册路由
