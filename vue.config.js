@@ -50,14 +50,17 @@ module.exports = {
   devServer: {
     open: true,
     host: '0.0.0.0',
-    port: 3000
+    port: 3000,
     // 由于本项目数据通过easy-mock和mockjs模拟，不存在跨域问题，无需配置代理;
-    // proxy: { 
-    //   '/v2': {
-    //       target: target,
-    //       changeOrigin: true
-    //   }
-    // }
+    proxy: { 
+      '/api': {
+          target: target,
+          changeOrigin: true,
+          pathRewrite: {
+            "/api": '/'
+          }
+      }
+    }
   },
    // webpack相关配置
   chainWebpack: (config) => {

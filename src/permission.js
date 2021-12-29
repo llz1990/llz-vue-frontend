@@ -4,17 +4,22 @@ import NProgress from 'nprogress' // Progress 进度条
 process.env.NODE_ENV === "development" && import('nprogress/nprogress.css')
 import { Message } from 'element-ui'
 import { getToken } from '@/utils/auth' // 验权(从cookie中获取)
-import { getUserInfo } from "@/api/user";
+import { getUserInfo, sysGetUserInfo } from "@/api/user";
 import {
   setTitle
 } from '@/utils/mUtils' // 设置浏览器头部标题
 
+/**
+ * 判断当前是否有路由跳转的权限
+ * @param {*} roles 
+ * @param {*} permissionRoles 
+ * @returns 
+ */
 function hasPermission(roles, permissionRoles) {
   if (roles.indexOf('admin') >= 0) return true 
   if (!permissionRoles) return true
   return roles.some(role => permissionRoles.indexOf(role) >= 0)
 }
-const whiteList = ['/login'] // 不重定向白名单
 
 router.beforeEach((to, from, next) => {
   console.log('路由守卫', to);
@@ -33,7 +38,7 @@ router.beforeEach((to, from, next) => {
       // 用户登录成功之后，每次点击路由都进行了角色的判断;
       if (store.getters.roles.length === 0) {
         let token = getToken('Token');
-        getUserInfo({"token":token}).then().then(res => { // 根据token拉取用户信息
+        sysGetUserInfo({"token": token}).then().then(res => { // 根据token拉取用户信息
           let userList = res.data.userList;
           store.commit("SET_ROLES",userList.roles);
           store.commit("SET_NAME",userList.name);
@@ -58,8 +63,8 @@ router.beforeEach((to, from, next) => {
       }
     }
   } else {
-    if (whiteList.indexOf(to.path) !== -1) {
-      // 点击退出时,会定位到这里
+    // 没有取到token，且路由是 /login
+    if (['/login'].indexOf(to.path) !== -1) {
       next()
     } else {
       next('/login')

@@ -7,9 +7,9 @@
 					<span class='title'>镇哥吃土豆</span>
 				</div>
 		    	<el-form :model="loginForm" :rules="rules" ref="loginForm" class="loginForm">
-					<el-form-item prop="username" class="login-item">
+					<el-form-item prop="name" class="login-item">
 					    <span class="loginTips"><icon-svg icon-class="iconuser" /></span>
-						<el-input @keyup.enter.native ="submitForm('loginForm')"  class="area" type="text" placeholder="用户名" v-model="loginForm.username" ></el-input>
+						<el-input @keyup.enter.native ="submitForm('loginForm')"  class="area" type="text" placeholder="用户名" v-model="loginForm.name" ></el-input>
 					</el-form-item>
 					<el-form-item prop="password" class="login-item"> 
 					    <span class="loginTips"><icon-svg icon-class="iconLock" /></span>
@@ -45,7 +45,7 @@
 
 <script>
 	import logoImg from "@/assets/img/logo.png";
-	import { login } from "@/api/user";
+	import { login, sysLogin } from "@/api/user";
     import { setToken } from '@/utils/auth'
 
 	export default {
@@ -53,11 +53,11 @@
 			return {
 				logo:logoImg,
 				loginForm: {
-					username: 'admin',
+					name: 'jack',
 					password: '123456'
 				},
 				rules: {
-					username: [
+					name: [
 			            { required: true, message: '请输入用户名', trigger: 'blur' },
 						{ min: 2, max: 8, message: '长度在 2 到 8 个字符', trigger: 'blur' }
 			        ],
@@ -74,9 +74,8 @@
 				this.$refs[loginForm].validate((valid) => {
 					if (valid) {
 						let userInfo = this.loginForm;
-						login(userInfo).then(res => {
-							let userList = res.data.userList;
-							setToken("Token",userList.token)
+						sysLogin(userInfo).then(res => {
+							setToken("Token", res.data);   // 取到后台的token 作为前端cookie
 							this.$router.push({ path: '/' })
 							this.$store.dispatch('initLeftMenu'); //设置左边菜单始终为展开状态
 						})

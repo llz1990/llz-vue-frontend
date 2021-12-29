@@ -85,7 +85,6 @@
 <script>
     import { mapGetters } from "vuex";
     import * as mUtils from '@/utils/mUtils'
-    import { setToken,getToken } from '@/utils/auth'
     import store from "@/store";
     import topMenu from "./topMenu";
     import wechatImg from "@/assets/img/wechat.jpg";
@@ -101,7 +100,7 @@
           data(){
             return{
                 logo:logoImg,
-                langLogo:getToken('langLogo') || americaImg,
+                langLogo: mUtils.getStore('langLogo') || americaImg,
                 chinaImg:chinaImg,
                 americaImg:americaImg,
                 wechat:{
@@ -170,14 +169,14 @@
             },
             // 切换语言
             changeLocale(type){
-                setToken('lang',type);
+                mUtils.setStore('lang',type);
                 this.$i18n.locale = type;
                 if(type === 'en'){
                     this.langLogo = this.americaImg;
                 }else{
                     this.langLogo = this.chinaImg;
                 }
-                setToken('langLogo',this.langLogo);
+                mUtils.setStore('langLogo',this.langLogo);
             }
           }
     }

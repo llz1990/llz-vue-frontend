@@ -23,13 +23,12 @@ service.interceptors.request.use(config => {
 // respone拦截器
 service.interceptors.response.use(
   response => {
-   /**
-    * code:200,接口正常返回;
-    */
     const res = response.data
+    debugger;
+    // res.code !== 200 对返回错误数据的处理
     if (res.code !== 200) {
       Message({
-        message: res.message,
+        message: '网络请求错误!',
         type: 'error',
         duration: 5 * 1000
       })
@@ -46,13 +45,14 @@ service.interceptors.response.use(
           })
       }
       return Promise.reject('error')
-    } else { // res.code === 200,正常返回数据
+      // res.code === 200 正常返回数据的处理
+    } else { 
         return response.data
     }
   },
   error => {
     Message({
-      message: error.message,
+      message: '网络请求错误',
       type: 'error',
       duration: 5 * 1000
     })
