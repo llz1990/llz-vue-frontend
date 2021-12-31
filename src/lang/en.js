@@ -8,6 +8,7 @@ const zh = {
       hi: 'Hi',
       home: 'Dashboard',
       userManage: 'Users',
+      fileManage: 'Files',
       share: 'Share',
       infoManage: 'Infos',
       infoShow: 'InfoShow',

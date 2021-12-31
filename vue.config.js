@@ -80,7 +80,22 @@ module.exports = {
     // 分割代码
     config.optimization.splitChunks({
         chunks: 'all'
-    })    
+    })
+    
+    // 对svg图片集中处理
+    config.module.rules.delete("svg"); //重点:删除默认配置中处理svg,
+    config.module
+      .rule('svg-sprite-loader')
+      .test(/\.svg$/)
+      .include
+      .add(resolve('src/icons')) //处理svg目录
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({
+        symbolId: 'icon-[name]'
+      })
+
     // 对图片进行压缩处理
     config.module
     .rule('images')
@@ -92,6 +107,7 @@ module.exports = {
         speed: 4
     })
     .end()
+
     // 项目文件大小分析
     config.plugin('webpack-bundle-analyzer')
     .use(new BundleAnalyzerPlugin({

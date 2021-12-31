@@ -6,18 +6,14 @@ import store from './store/'
 import ElementUI from 'element-ui'
 Vue.use(ElementUI, { size: 'mini'});
 import('element-ui/lib/theme-chalk/index.css')
-
-import './components/iconSvg' // iconSvg
-
 import '@/permission' // permission control
-
 import '@/mockjs'; // mock数据
-
 // i18n国际化
 import i18n from "@/lang";
-
 // 分享功能集合
 import { shareConfig } from './utils/share';
+// 引入svg 所有文件
+import './icons';
 Vue.prototype.shareConfig = shareConfig;
 
 

@@ -40,7 +40,7 @@ export const constantRouterMap = [
 		component: Layout,
 		meta: {
 			title: '首页',
-			icon: 'icondashboard',
+			icon: 'dashboard',
 		},
 		noDropdown: true,
 		children: [
@@ -48,7 +48,7 @@ export const constantRouterMap = [
 				path: 'index',
 				meta: {
 					title: '首页',
-					icon: 'icondashboard',
+					icon: 'dashboard',
 					routerType: 'leftmenu'
 				},
 				component: () => import('@/page/index/index'),
@@ -75,7 +75,7 @@ export const asyncRouterMap = [
 		component: Layout,
 		meta: {
 			title: '用户管理',
-			icon: 'iconuser',
+			icon: 'user',
 		},
 		noDropdown: true,
 		children: [
@@ -83,10 +83,31 @@ export const asyncRouterMap = [
 				path: 'userList',
 				meta: {
 					title: '用户管理',
-					icon: 'iconuser',
+					icon: 'user',
 					routerType: 'leftmenu'
 				},
 				component: () => import('@/page/userList/userList'),
+			}
+		]
+	},
+	{
+		path: '/fileManager',
+		name: 'fileManage',
+		component: Layout,
+		meta: {
+			title: '文件管理',
+			icon: 'excel',
+		},
+		noDropdown: true,
+		children: [
+			{
+				path: 'fileList',
+				meta: {
+					title: '文件管理',
+					icon: 'excel',
+					routerType: 'leftmenu'
+				},
+				component: () => import('@/page/fileList/fileList'),
 			}
 		]
 	},
@@ -96,7 +117,7 @@ export const asyncRouterMap = [
 		component: Layout,
 		meta: {
 			title: '分享功能',
-			icon: 'iconshare',
+			icon: 'share',
 		},
 		noDropdown: true,
 		children: [
@@ -104,7 +125,7 @@ export const asyncRouterMap = [
 				path: 'share',
 				meta: {
 					title: '分享功能',
-					icon: 'iconshare',
+					icon: 'share',
 					routerType: 'leftmenu'
 				},
 				component: () => import('@/page/share'),
@@ -116,7 +137,7 @@ export const asyncRouterMap = [
 		name: 'infoManage',
 		meta: {
 			title: '信息管理',
-			icon: 'iconinfo',
+			icon: 'info',
 		},
 		component: Layout,
 		children: [
@@ -125,7 +146,7 @@ export const asyncRouterMap = [
 				name: 'infoShow',
 				meta: {
 					title: '个人信息',
-					icon: 'iconinfo',
+					icon: 'info',
 					routerType: 'leftmenu',
 					titleList: [
 						{ "path": "infoShow1", "title": "个人信息子菜单1" },
@@ -143,7 +164,7 @@ export const asyncRouterMap = [
 				name: 'infoModify',
 				meta: {
 					title: '修改信息',
-					icon: 'iconinfo',
+					icon: 'info',
 					routerType: 'leftmenu',
 					titleList: [
 						{ "path": "infoModify1", "title": "修改信息子菜单1" },
@@ -161,7 +182,7 @@ export const asyncRouterMap = [
 		name: 'fundManage',
 		meta: {
 			title: '资金管理',
-			icon: 'iconpay3',
+			icon: 'money',
 		},
 		component: Layout,
 		children: [
@@ -190,7 +211,7 @@ export const asyncRouterMap = [
 		name: 'fundData',
 		meta: {
 			title: '资金数据',
-			icon: 'iconecharts',
+			icon: 'charts',
 		},
 		component: Layout,
 		redirect: '/fundData/fundPosition',
@@ -226,7 +247,7 @@ export const asyncRouterMap = [
 		name: 'permission',
 		meta: {
 			title: '权限设置',
-			icon: 'iconpermission',
+			icon: 'people',
 			roles: ['admin', 'editor'] // you can set roles in root nav
 		},
 		component: Layout,
@@ -255,7 +276,7 @@ export const asyncRouterMap = [
 		name: 'errorPage',
 		meta: {
 			title: '错误页面',
-			icon: 'iconError'
+			icon: 'error'
 		},
 		children: [
 			{

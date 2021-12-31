@@ -34,23 +34,6 @@ export const removeStore = name => {
 }
 
 /**
- * 让整数自动保留2位小数
- */
-// export const returnFloat = value => { 
-//     var value=Math.round(parseFloat(value)*100)/100; 
-//     var xsd=value.toString().split("."); 
-//     if(xsd.length==1){ 
-//         value=value.toString()+".00"; 
-//         return value;   
-//     } 
-//     if(xsd.length>1){ 
-//         if(xsd[1].length<2){ 
-//             value=value.toString()+"0"; 
-//         } 
-//         return value; 
-//     } 
-// } 
-/**
  * @param {date} 标准时间格式:Fri Nov 17 2017 09:26:23 GMT+0800 (中国标准时间)
  * @param {type} 类型
  *   type == 1 ---> "yyyy-mm-dd hh:MM:ss.fff"

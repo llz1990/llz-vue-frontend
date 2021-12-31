@@ -8,6 +8,7 @@ const zh = {
       hi: '您好',
       home: '首页',
       userManage: '用户管理',
+      fileManage: '文件管理',
       share: '分享功能',
       infoManage: '信息管理',
       infoShow: '个人信息',
