@@ -247,7 +247,7 @@ export const asyncRouterMap = [
 		name: 'permission',
 		meta: {
 			title: '权限设置',
-			icon: 'people',
+			icon: 'permission',
 			roles: ['admin', 'editor'] // you can set roles in root nav
 		},
 		component: Layout,

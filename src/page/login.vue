@@ -24,7 +24,7 @@
             class="login-item"
           >
             <span class="loginTips">
-              <icon-svg icon-class="iconuser" />
+              <icon-svg icon-class="user" />
             </span>
             <el-input
               @keyup.enter.native="submitForm('loginForm')"
@@ -39,7 +39,7 @@
             class="login-item"
           >
             <span class="loginTips">
-              <icon-svg icon-class="iconLock" />
+              <icon-svg icon-class="lock" />
             </span>
             <el-input
               @keyup.enter.native="submitForm('loginForm')"
@@ -60,13 +60,13 @@
             <p class="title">第三方账号登录</p>
             <ul class="rflex">
               <li @click="loginByWechat">
-                <icon-svg icon-class="iconwechat" />
+                <icon-svg icon-class="wechat" />
               </li>
               <li @click="loginByWeibo">
-                <icon-svg icon-class="iconweibo" />
+                <icon-svg icon-class="weibo" />
               </li>
               <li @click="loginByGithub">
-                <icon-svg icon-class="iconGithub" />
+                <icon-svg icon-class="github" />
               </li>
             </ul>
           </div>

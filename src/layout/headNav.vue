@@ -23,7 +23,7 @@
                   :href='github'
                   target="_blank"
                 >
-                  <icon-svg icon-class="iconGithub" />
+                  <icon-svg icon-class="github" />
                 </a>
               </el-tooltip>
             </li>
@@ -33,7 +33,7 @@
                 target="_blank"
                 v-popover:qcode
               >
-                <icon-svg icon-class="iconwechat" />
+                <icon-svg icon-class="wechat" />
                 <el-popover
                   ref="qcode"
                   popper-class="qcodepopper"
@@ -56,7 +56,7 @@
                 target="_blank"
                 v-popover:qqcode
               >
-                <icon-svg icon-class="iconqq" />
+                <icon-svg icon-class="qq" />
                 <el-popover
                   ref="qqcode"
                   popper-class="qcodepopper"
