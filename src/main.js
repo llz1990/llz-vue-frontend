@@ -14,12 +14,11 @@ import i18n from "@/lang";
 import { shareConfig } from './utils/share';
 // 引入svg 所有文件
 import './icons';
+import { Message } from 'element-ui'
+
 Vue.prototype.shareConfig = shareConfig;
-
-
+Vue.prototype.$message = Message;
 Vue.config.productionTip = false;
-
-
 
 new Vue({
   router,

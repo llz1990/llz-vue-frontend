@@ -9,7 +9,7 @@
           <img
             class="logo"
             :src="logo"
-            alt="小爱admin"
+            alt="admin"
           >
           <span class='title'>G-System</span>
         </div>

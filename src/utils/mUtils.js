@@ -124,7 +124,7 @@ export const showMessage = () =>{
 /**
  * 读取base64
  */
-export const  readFile = file => {
+export const readFile = file => {
     console.log(file)
     //var file = this.files[0];
     //判断是否是图片类型
@@ -158,7 +158,7 @@ export const loadStyle = url => {
    * 设置浏览器头部标题
    */
   export const setTitle = (title) => {
-    title = title ? `${title}` : '小爱Admin'
+    title = title ? `${title}` : 'Admin'
     window.document.title = title
   }
 
@@ -180,4 +180,14 @@ export const setContentHeight = (that,ele,height) => {
     that.$nextTick(() => {
         ele.style.height =   (document.body.clientHeight - height)+'px'
     })
-  }
+}
+
+/**
+ * 统一处理服务器返回的图片
+ * @param {*} picUrl 
+ */
+export const dealPicUrl = (picUrl) => {
+    if(!picUrl) return '';
+    const target = process.env.VUE_APP_URL;
+    return target + picUrl;
+}
