@@ -92,6 +92,8 @@ export default {
       getAllPicList().then(({ code, data }) => {
         if (code === 200 && data && data.length > 0) {
           this.picList = data;
+        } else {
+          this.picList = [];
         }
       });
     },
