@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    title="添加相册"
+    :title="title"
     :visible.sync="dialogFormVisible"
   >
     <el-form :model="form">
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { addPic } from "@/api/list";
+import { addPic, editPic } from "@/api/list";
 export default {
   name: "add-pic",
   props: {
@@ -59,6 +59,11 @@ export default {
       type: Boolean,
       default: false,
     },
+    title: {
+      type: String,
+      default: "",
+    },
+    listId: String,
   },
   data() {
     return {
@@ -92,17 +97,31 @@ export default {
      */
     onSubmit() {
       this.dialogFormVisible = false;
+      this.form.listId = this.listId;
       const params = this.form;
-      addPic(params).then(({ code, data }) => {
-        if (code === 200) {
-          this.$message({
-            message: "添加相册成功",
-            type: "success",
-            duration: 3 * 1000,
-          });
-          this.$emit("refreshList"); // 添加完成后重新拉取数据
-        }
-      });
+      if (this.title === "添加相册") {
+        addPic(params).then(({ code, data }) => {
+          if (code === 200) {
+            this.$message({
+              message: "添加相册成功",
+              type: "success",
+              duration: 3 * 1000,
+            });
+            this.$emit("refreshList"); // 添加完成后重新拉取数据
+          }
+        });
+      } else if (this.title === "编辑相册") {
+        editPic(params).then(({ code, data }) => {
+          if (code === 200) {
+            this.$message({
+              message: "编辑相册成功",
+              type: "success",
+              duration: 3 * 1000,
+            });
+            this.$emit("refreshList"); // 添加完成后重新拉取数据
+          }
+        });
+      }
     },
   },
 };

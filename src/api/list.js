@@ -7,6 +7,7 @@ export function getAllPicList() {
   })
 }
 
+// 添加相册
 export function addPic(params) {
   return request({
     url:'api/addPic',
@@ -15,6 +16,16 @@ export function addPic(params) {
   })
 }
 
+// 编辑相册
+export function editPic(params) {
+  return request({
+    url:'api/editPic',
+    method: 'post',
+    data: params
+  })
+}
+
+// 删除相册
 export function deletePic(params) {
   return request({
     url:'api/deletePic',

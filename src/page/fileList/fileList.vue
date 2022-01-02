@@ -28,11 +28,12 @@
           <div style="padding: 14px">
             <span>{{item.listName || ''}}</span>
             <div class="bottom clearfix">
-              <time class="time">{{ currentDate }}</time>
+              <time class="time">{{ item.descInfo || '' }}</time>
               <el-button
                 type="text"
                 class="button"
-              >操作按钮</el-button>
+                @click="editPicList(item.listId)"
+              >编辑相册</el-button>
             </div>
           </div>
         </el-card>
@@ -59,6 +60,8 @@
       ref="addPic"
       v-if="isShowPicDialog"
       :isShow="isShowPicDialog"
+      :title="title"
+      :listId="listId"
       @refreshList="getAllPicList"
     ></addPic>
   </div>
@@ -105,6 +108,18 @@ export default {
      */
     addPicList() {
       this.isShowPicDialog = true;
+      this.title = "添加相册";
+      if (this.$refs.addPic) {
+        this.$refs.addPic.dialogFormVisible = true;
+      }
+    },
+    /**
+     * 编辑当前相册
+     */
+    editPicList(listId) {
+      this.isShowPicDialog = true;
+      this.listId = listId;
+      this.title = "编辑相册";
       if (this.$refs.addPic) {
         this.$refs.addPic.dialogFormVisible = true;
       }
