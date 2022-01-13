@@ -16,6 +16,15 @@ import { shareConfig } from './utils/share';
 import './icons';
 import { Message } from 'element-ui'
 
+// 引入图片懒加载
+import VueLazyLoad from 'vue-lazyload';
+Vue.use(VueLazyLoad, {
+  preLoad: 1.3,
+  error: require('@/assets/img/imgError.png'),
+  // loading: require('@/assets/img/imgLoading.gif'),
+  attempt: 1
+})
+
 Vue.prototype.shareConfig = shareConfig;
 Vue.prototype.$message = Message;
 Vue.config.productionTip = false;

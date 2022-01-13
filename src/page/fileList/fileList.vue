@@ -1,7 +1,10 @@
 <template>
   <div class="file-container">
-    <el-row class="row-item">
-      <!-- 相册框列表 -->
+    <!-- 相册框列表 -->
+    <el-row
+      class="row-item"
+      v-show="showList"
+    >
       <el-col
         :span="6"
         v-for="item in picList"
@@ -13,11 +16,12 @@
           :body-style="{ padding: '2px' }"
           class="card-item"
         >
-          <img
-            :src="dealPicUrl(item.backUrl)"
-            class="image"
-            @click.stop="toViewPic"
-          />
+          <div class="image-tag">
+            <img
+              v-lazy="dealPicUrl(item.backUrl)"
+              @click.stop="toViewPic(item.listId)"
+            />
+          </div>
           <div
             class="delete-item"
             @click.stop="deletePic(item.listId)"
@@ -56,6 +60,12 @@
         </el-card>
       </el-col>
     </el-row>
+    <!-- 展示相册详情 -->
+    <fileDetail
+      v-if="showDetail"
+      :picDetail="picDetail"
+      @showPicList="showPicList"
+    ></fileDetail>
     <addPic
       ref="addPic"
       v-if="isShowPicDialog"
@@ -69,6 +79,7 @@
 
 <script>
 import addPic from "./components/addPic";
+import fileDetail from "./components/fileDetail.vue";
 import { getAllPicList, deletePic } from "@/api/list";
 import { dealPicUrl } from "../../utils/mUtils";
 export default {
@@ -78,9 +89,12 @@ export default {
       currentDate: new Date(),
       picList: [],
       isShowPicDialog: false,
+      showList: true,
+      showDetail: false,
+      picDetail: {},
     };
   },
-  components: { addPic },
+  components: { addPic, fileDetail },
   created() {
     this.getAllPicList();
   },
@@ -100,8 +114,14 @@ export default {
         }
       });
     },
-    toViewPic() {
-      this.$router.push({ path: "/fileManager/fileDetail" });
+    toViewPic(listId) {
+      this.showList = false;
+      this.showDetail = true;
+      this.picDetail = this.picList.filter((item) => item.listId === listId)[0];
+    },
+    showPicList() {
+      this.showList = true;
+      this.showDetail = false;
     },
     /**
      * 现有相册组添加相册
@@ -163,6 +183,7 @@ export default {
       height: 400px;
       width: 100%;
       position: relative;
+      cursor: pointer;
 
       .delete-item {
         position: absolute;
@@ -193,10 +214,15 @@ export default {
     float: right;
   }
 
-  .image {
+  .image-tag {
     width: 100%;
     height: 300px;
-    display: block;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   .clearfix:before,
