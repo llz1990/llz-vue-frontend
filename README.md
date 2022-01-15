@@ -5,7 +5,7 @@ git 提交代码之前执行 git config --global --unset http.proxy (由于本�
 
 **前端技术栈：** vue2 + vuex + vue-router + webpack + ES6/7 + less + element-ui
 
-**服务端技术栈：** mockjs
+**服务端技术栈：** koa 2.0  (github: https://github.com/llz1990/llz-koa-server)
 
 ## 前序准备
 
@@ -17,15 +17,13 @@ git 提交代码之前执行 git config --global --unset http.proxy (由于本�
         
 
 ## 开发：
-1. git clone -b dev-permission https://github.com/wdlhao/vue2-element-touzi-admin  (注意：要从dev-permission分支拉取代码)
-
-1. cd vue2-element-touzi-admin
+1. git clone https://github.com/llz1990/llz-vue-frontend.git
  
-1. npm install
+2. npm install
 
 **本地运行：**
 
-**npm run serve** 运行之后，会默认打开本地访问路径：http://localhost:8012
+**npm run serve** 运行之后，会默认打开本地访问路径：http://localhost:3000
 
 **发布：**
 
