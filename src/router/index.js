@@ -112,6 +112,27 @@ export const asyncRouterMap = [
 		]
 	},
 	{
+		path: '/videoManager',
+		name: 'videoManager',
+		component: Layout,
+		meta: {
+			title: '视频管理',
+			icon: 'video',
+		},
+		noDropdown: true,
+		children: [
+			{
+				path: 'videoList',
+				meta: {
+					title: '视频管理',
+					icon: 'video',
+					routerType: 'leftmenu'
+				},
+				component: () => import('@/page/videoList/videoList'),
+			}
+		]
+	},
+	{
 		path: '/share',
 		name: 'share',
 		component: Layout,

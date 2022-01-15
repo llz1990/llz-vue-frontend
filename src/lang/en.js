@@ -9,6 +9,7 @@ const zh = {
       home: 'Dashboard',
       userManage: 'Users',
       fileManage: 'Files',
+      videoManager: 'Videos',
       share: 'Share',
       infoManage: 'Infos',
       infoShow: 'InfoShow',
