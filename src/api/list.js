@@ -1,5 +1,6 @@
 import request from '@/utils/axios'
 
+// 查询相册合集
 export function getAllPicList() {
   return request({
     url:'api/picList',
@@ -47,5 +48,14 @@ export function addPicDetail(params) {
     url:'api/addPicDetail',
     method: 'post',
     data: params
+  })
+}
+
+
+// 查询视频合集
+export function getAllVideos() {
+  return request({
+    url:'api/getVideoList',
+    method: 'get'
   })
 }
