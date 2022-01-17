@@ -59,3 +59,12 @@ export function getAllVideos() {
     method: 'get'
   })
 }
+
+// 添加新的视频文件
+export function addVideo(params) {
+  return request({
+    url:'api/addVideo',
+    method: 'post',
+    data: params
+  })
+}

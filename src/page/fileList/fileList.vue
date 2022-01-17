@@ -92,6 +92,7 @@ export default {
       showList: true,
       showDetail: false,
       picDetail: {},
+      listId: "",
     };
   },
   components: { addPic, fileDetail },

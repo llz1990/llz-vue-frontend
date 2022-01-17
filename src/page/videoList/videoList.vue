@@ -25,17 +25,22 @@
       </div>
     </div>
     <!-- 添加视频区域 -->
-    <div class="detail-info-add-item">
+    <div
+      class="detail-info-add-item"
+      @click.stop="addVideo"
+    >
       <i
         class="el-icon-plus"
         style="font-size: 60px"
       ></i>
-      <input
-        type="file"
-        id="file"
-        @change="uploadVideo($event)"
-      >
     </div>
+    <!-- 添加视频弹窗 -->
+    <addVideo
+      ref="addVideo"
+      v-if="isShowVideoDialog"
+      :isShow="isShowVideoDialog"
+      @refreshVideo="getAllVideos"
+    ></addVideo>
   </div>
 </template>
 
@@ -43,12 +48,17 @@
 import defaultAvatar from "../../assets/img/defaultAvatar.png";
 import { getAllVideos } from "@/api/list";
 import { dealPicUrl } from "../../utils/mUtils";
+import addVideo from "./components/addVideo.vue";
 export default {
   name: "videoList",
+  components: {
+    addVideo,
+  },
   data() {
     return {
       defaultAvatar: defaultAvatar,
       videoList: [],
+      isShowVideoDialog: false,
     };
   },
   created() {
@@ -72,28 +82,13 @@ export default {
     },
 
     /**
-     * 上传视频
+     * 添加视频
      */
-    uploadVideo(event) {
-      const files = event.target.files;
-      const file = files[0];
-      const reader = new FileReader();
-      const self = this;
-      reader.readAsDataURL(file);
-      reader.onload = function (e) {
-        const fileBase64 = e.target.result;
-        const fileStr = fileBase64.split(";base64,")[1]; // 单张照片base64编码
-        console.log("视频编码", fileStr);
-        // const params = {
-        //   listId: self.picDetail.listId,
-        //   picUrlBase64: fileStr,
-        // };
-        // addPicDetail(params).then(({ code, data }) => {
-        //   if (code === 200) {
-        //     self.getPicDetail();
-        //   }
-        // });
-      };
+    addVideo() {
+      this.isShowVideoDialog = true;
+      if (this.$refs.addVideo) {
+        this.$refs.addVideo.dialogFormVisible = true;
+      }
     },
   },
 };
@@ -123,6 +118,7 @@ export default {
     width: 320px;
     height: 240px;
     text-align: center;
+    cursor: pointer;
 
     .el-icon-plus {
       line-height: 210px;
