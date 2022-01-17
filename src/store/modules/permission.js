@@ -41,13 +41,13 @@ function hasPermission(roles, route) {
   if (route.meta && route.meta.roles) {
     return roles.some(role => route.meta.roles.indexOf(role) >= 0)
   } else {
-    return true
+    return false;
   }
 }
 
 /**
  * 递归过滤异步路由表，返回符合用户角色权限的路由表
- * @param asyncRouterMap
+ * @param asyncRouterMap 权限路由表汇总
  * @param roles
  */
 function filterAsyncRouter(asyncRouterMap, roles) {

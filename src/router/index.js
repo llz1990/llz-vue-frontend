@@ -97,6 +97,7 @@ export const asyncRouterMap = [
 		meta: {
 			title: '文件管理',
 			icon: 'excel',
+			roles: ['admin', 'editor']
 		},
 		noDropdown: true,
 		children: [
@@ -105,7 +106,8 @@ export const asyncRouterMap = [
 				meta: {
 					title: '文件管理',
 					icon: 'excel',
-					routerType: 'leftmenu'
+					routerType: 'leftmenu',
+					roles: ['admin', 'editor']
 				},
 				component: () => import('@/page/fileList/fileList'),
 			}
@@ -118,6 +120,7 @@ export const asyncRouterMap = [
 		meta: {
 			title: '视频管理',
 			icon: 'video',
+			roles: ['admin', 'editor']
 		},
 		noDropdown: true,
 		children: [
@@ -126,7 +129,8 @@ export const asyncRouterMap = [
 				meta: {
 					title: '视频管理',
 					icon: 'video',
-					routerType: 'leftmenu'
+					routerType: 'leftmenu',
+					roles: ['admin', 'editor']
 				},
 				component: () => import('@/page/videoList/videoList'),
 			}

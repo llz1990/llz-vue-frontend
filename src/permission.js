@@ -43,6 +43,7 @@ router.beforeEach((to, from, next) => {
           store.commit("SET_ROLES",userList.roles);
           store.commit("SET_NAME",userList.name);
           store.commit("SET_AVATAR",userList.avatar);
+          // 通过取到当前用户的权限信息，来生成权限路由表：
           store.dispatch('GenerateRoutes', { "roles":userList.roles }).then(() => { // 根据roles权限生成可访问的路由表
             router.addRoutes(store.getters.addRouters) // 动态添加可访问权限路由表
             next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
