@@ -40,7 +40,7 @@ const cdn = {
 
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "/permission/" : "/",
+  publicPath: "/",
   outputDir: './llz-vue-dist',
   assetsDir:'static',
   filenameHashing:true, // false 来关闭文件名哈希
