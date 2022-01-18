@@ -23,7 +23,7 @@ function hasPermission(roles, permissionRoles) {
 
 router.beforeEach((to, from, next) => {
   console.log('路由守卫', to);
-  NProgress.start()
+  NProgress.start()  // 显示页面顶部进度条
    // 设置浏览器头部标题
    const browserHeaderTitle = to.meta.title
    store.commit('SET_BROWSERHEADERTITLE', {

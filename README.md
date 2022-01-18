@@ -32,12 +32,10 @@ git 提交代码之前执行 git config --global --unset http.proxy (由于本�
 ## 演示
 测试账号:
 
-1. username: admin / password: 123456
-2. username: editor / password: 123456
+1. username: jack / password: 123456  (admin)
+2. username: kobe / password: 123456  (editor)
 
 注意：
-
 admin：拥有最高权限，可以查看所有的页面和按钮；
-
 editor：只有被赋予权限的页面和按钮才可以看到；
 

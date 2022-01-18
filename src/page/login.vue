@@ -86,8 +86,8 @@ export default {
     return {
       logo: logoImg,
       loginForm: {
-        name: "jack",
-        password: "123456",
+        name: "",
+        password: "",
       },
       rules: {
         name: [
