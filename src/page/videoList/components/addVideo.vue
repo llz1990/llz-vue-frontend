@@ -19,6 +19,7 @@
         <input
           type="file"
           id="file"
+          accept="video/*"
           @change="uploadVideo($event)"
         >
       </el-form-item>
@@ -30,14 +31,14 @@
       <el-button @click="dialogFormVisible = false">取 消</el-button>
       <el-button
         type="primary"
-        @click="onSubmit"
+        @click="onSubmitFormData"
       >确 定</el-button>
     </div>
   </el-dialog>
 </template>
 
 <script>
-import { addVideo } from "@/api/list";
+import { addVideo, addVideoEx } from "@/api/list";
 export default {
   name: "add-video",
   props: {
@@ -49,6 +50,7 @@ export default {
   data() {
     return {
       dialogFormVisible: this.isShow,
+      videoFile: "",
       form: {
         videoTitle: "",
         videoBase64: "",
@@ -62,33 +64,70 @@ export default {
     uploadVideo(event) {
       const files = event.target.files;
       const file = files[0];
+      this.videoFile = files[0];
       const reader = new FileReader();
       const self = this;
       reader.readAsDataURL(file);
       reader.onload = function (e) {
         const fileBase64 = e.target.result;
-        console.log("反对反对犯得上", fileBase64);
+        console.log("base64编码 =============================>", fileBase64);
         const fileStr = fileBase64.split(";base64,")[1];
         self.form.videoBase64 = fileStr;
       };
     },
 
     /**
-     * 提交表单，增加相册合集
+     * 提交表单，增加相册合集(通过base64作为请求参数上传)
      */
     onSubmit() {
       this.dialogFormVisible = false;
       const params = this.form;
-      addVideo(params).then(({ code, data }) => {
-        if (code === 200) {
+      addVideo(params)
+        .then(({ code, data }) => {
+          if (code === 200) {
+            this.$message({
+              message: "添加视频文件成功",
+              type: "success",
+              duration: 3 * 1000,
+            });
+            this.$emit("refreshVideo"); // 添加完成后重新拉取数据
+          }
+        })
+        .catch((error) => {
           this.$message({
-            message: "添加视频文件成功",
-            type: "success",
+            message: error,
+            type: "error",
             duration: 3 * 1000,
           });
-          this.$emit("refreshVideo"); // 添加完成后重新拉取数据
-        }
-      });
+        });
+    },
+
+    /**
+     * 通过formdata上传：
+     */
+    onSubmitFormData() {
+      this.dialogFormVisible = false;
+      const paramsFormData = new FormData();
+      paramsFormData.append("videoTitle", this.form.videoTitle);
+      paramsFormData.append("videoFileBlob", this.videoFile);
+      addVideoEx(paramsFormData)
+        .then(({ code, data }) => {
+          if (code === 200) {
+            this.$message({
+              message: "添加视频文件成功",
+              type: "success",
+              duration: 3 * 1000,
+            });
+            this.$emit("refreshVideo"); // 添加完成后重新拉取数据
+          }
+        })
+        .catch((error) => {
+          this.$message({
+            message: error,
+            type: "error",
+            duration: 3 * 1000,
+          });
+        });
     },
   },
 };

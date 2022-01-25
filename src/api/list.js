@@ -68,3 +68,11 @@ export function addVideo(params) {
     data: params
   })
 }
+
+export function addVideoEx(params) {
+  return request({
+    url:'api/addVideoEx',
+    method: 'post',
+    data: params
+  })
+}
