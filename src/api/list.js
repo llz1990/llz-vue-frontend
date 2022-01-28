@@ -30,7 +30,7 @@ export function editPic(params) {
 export function deletePic(params) {
   return request({
     url:'api/deletePic',
-    method: 'delete',
+    method: 'post',
     data: params
   })
 }
