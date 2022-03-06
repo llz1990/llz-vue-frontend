@@ -8,7 +8,9 @@ const resolve = dir => {
 };
 
 const env = process.env.NODE_ENV
-let target = process.env.VUE_APP_URL  // development和production环境是不同的
+const target = process.env.VUE_APP_URL  // development和production环境是不同的
+const env_name = process.env.ENV_NAME
+console.log(env, target, env_name);
 
 const cdn = {
   // 开发环境
